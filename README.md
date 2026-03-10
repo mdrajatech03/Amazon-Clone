@@ -3,7 +3,7 @@
 A sleek, professional, and fully responsive web application built using **HTML5, CSS3, and Vanilla JavaScript**. This project focuses on providing a seamless user experience with clean code and modern design principles.
 
 
-[Live Project](https://mdrajatech03.github.io/Amazon-Clone/)
+## [Live Project](https://mdrajatech03.github.io/Amazon-Clone/)
 
 ## ✨ Key Features
 
