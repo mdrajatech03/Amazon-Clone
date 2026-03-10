@@ -1,8 +1,7 @@
 # 🚀 Amazon Clone 
 
 A sleek, professional, and fully responsive web application built using **HTML5, CSS3, and Vanilla JavaScript**. This project focuses on providing a seamless user experience with clean code and modern design principles.
-
----
+[Live Project] (https://mdrajatech03.github.io/Amazon-Clone/)
 
 ## ✨ Key Features
 
@@ -24,7 +23,7 @@ A sleek, professional, and fully responsive web application built using **HTML5,
 ## ⚙️ Installation & Usage
 **1. Clone the Repository:**
 
-git clone [https://github.com/mdrajatech03/](https://github.com/mdrajatech03/)[Your_Repo_Name].git
+git clone [https://github.com/mdrajatech03/](https://github.com/mdrajatech03/)Amazon-Clone.git
 
 **2. Navigate to Folder:**
 
@@ -37,7 +36,9 @@ Check out the live version here:
 
 ## 👤 Author
 Md Raja
+
 GitHub: @mdrajatech03
+
 LinkedIn: (https://vaai.la/MdrajaLinkedIn)
 
 ## 📄 License
