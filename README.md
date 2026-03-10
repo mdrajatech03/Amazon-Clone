@@ -14,6 +14,8 @@ A sleek, professional, and fully responsive web application built using **HTML5,
 
 ---
 
+## ![Screenshot](screenshot.jpg)
+
 ## 🛠️ Tech Stack
 
 * **HTML5:** Semantic structure for better SEO and accessibility.
