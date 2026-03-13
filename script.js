@@ -1,6 +1,5 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
 function addCart(name,price){
 
 cart.push({name,price});
@@ -11,64 +10,63 @@ updateCart();
 
 }
 
-
 function updateCart(){
-
-let count = cart.length;
 
 let cartCount = document.getElementById("cart-count");
 
 if(cartCount){
 
-cartCount.innerText = count;
+cartCount.innerText = cart.length;
 
 }
 
 }
-
 
 updateCart();
 
 
-/* CART PAGE */
+/* SEARCH */
 
-let cartItems = document.getElementById("cart-items");
+const search = document.getElementById("search");
 
-if(cartItems){
+if(search){
 
-let html="";
+search.addEventListener("keyup",function(){
 
-let total = 0;
+let value = this.value.toLowerCase();
 
-cart.forEach(item=>{
+let products = document.querySelectorAll(".product");
 
-total += item.price;
+products.forEach(product=>{
 
-html += `
-<div class="cart-item">
-<span>${item.name}</span>
-<span>$${item.price}</span>
-</div>
-`;
+let name = product.querySelector("h3").innerText.toLowerCase();
+
+if(name.includes(value)){
+
+product.style.display="block";
+
+}else{
+
+product.style.display="none";
+
+}
 
 });
 
-html += `<hr><h3>Total: $${total}</h3>`;
-
-cartItems.innerHTML = html;
+});
 
 }
 
 
-/* PRODUCT FILTER */
+/* FILTER */
 
 function filterProduct(category){
 
 let products = document.querySelectorAll(".product");
 
-products.forEach(product => {
+products.forEach(product=>{
 
-if(category === "all"){
+if(category==="all"){
 
 product.style.display="block";
 
@@ -87,5 +85,35 @@ product.style.display="none";
 }
 
 });
+
+}
+
+
+/* CART PAGE */
+
+let cartItems = document.getElementById("cart-items");
+
+if(cartItems){
+
+let html="";
+
+let total=0;
+
+cart.forEach(item=>{
+
+total+=item.price;
+
+html+=`
+<div class="cart-item">
+<span>${item.name}</span>
+<span>$${item.price}</span>
+</div>
+`;
+
+});
+
+html+=`<hr><h3>Total: $${total}</h3>`;
+
+cartItems.innerHTML=html;
 
 }
