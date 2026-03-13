@@ -1,63 +1,91 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const wrapper = document.querySelector('.wrapper');
-const loginLink = document.querySelector('.register-link');
-const registerLink = document.querySelector('.login-link');
-const btnPopup = document.querySelector('.btnLogin-popup');
-const iconClose = document.querySelector('.icon-close');
-const iconMinimize = document.querySelector('.icon-minimize');
 
-// Form switch
-loginLink.onclick = () => { wrapper.classList.add('active'); };
-registerLink.onclick = () => { wrapper.classList.remove('active'); };
+function addCart(name,price){
 
-// Window controls
-btnPopup.onclick = () => { wrapper.classList.add('active-popup'); wrapper.classList.remove('minimized'); };
-iconClose.onclick = () => { wrapper.classList.remove('active-popup'); };
-iconMinimize.onclick = () => { wrapper.classList.add('minimized'); };
+cart.push({name,price});
 
-// Password Show/Hide Logic
-document.querySelectorAll('.toggle-password').forEach(icon => {
-    icon.onclick = function() {
-        const input = document.getElementById(this.getAttribute('data-target'));
-        if (input.type === 'password') {
-            input.type = 'text';
-            this.classList.replace('fa-eye-slash', 'fa-eye');
-        } else {
-            input.type = 'password';
-            this.classList.replace('fa-eye', 'fa-eye-slash');
-        }
-    };
+localStorage.setItem("cart",JSON.stringify(cart));
+
+updateCart();
+
+}
+
+
+function updateCart(){
+
+let count = cart.length;
+
+let cartCount = document.getElementById("cart-count");
+
+if(cartCount){
+
+cartCount.innerText = count;
+
+}
+
+}
+
+
+updateCart();
+
+
+/* CART PAGE */
+
+let cartItems = document.getElementById("cart-items");
+
+if(cartItems){
+
+let html="";
+
+let total = 0;
+
+cart.forEach(item=>{
+
+total += item.price;
+
+html += `
+<div class="cart-item">
+<span>${item.name}</span>
+<span>$${item.price}</span>
+</div>
+`;
+
 });
 
-// Particle Effect
-const canvas = document.getElementById('particleCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+html += `<hr><h3>Total: $${total}</h3>`;
 
-let particles = [];
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.5;
-        this.speedX = Math.random() * 0.4 - 0.2;
-        this.speedY = Math.random() * 0.4 - 0.2;
-    }
-    update() {
-        this.x += this.speedX; this.y += this.speedY;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y > canvas.height) this.y = 0;
-    }
-    draw() {
-        ctx.fillStyle = '#00f2fe';
-        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-    }
+cartItems.innerHTML = html;
+
 }
-function init() { for (let i = 0; i < 80; i++) particles.push(new Particle()); }
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
+
+
+/* PRODUCT FILTER */
+
+function filterProduct(category){
+
+let products = document.querySelectorAll(".product");
+
+products.forEach(product => {
+
+if(category === "all"){
+
+product.style.display="block";
+
 }
-init(); animate();
+
+else if(product.classList.contains(category)){
+
+product.style.display="block";
+
+}
+
+else{
+
+product.style.display="none";
+
+}
+
+});
+
+}
